@@ -30,35 +30,26 @@
           <input id="number" type="tel" pattern="\d*" autocomplete="cc-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
         </div>
         <div class="dateAndCvc">
-          <label for="expDate">Exp. Date (MM/YY)</label>
-          <div id="expDate">
-            <input inputmode="numeric" type="tel" maxlength="2" placeholder="MM">
-            <input inputmode="numeric" type="number" maxlength="2" placeholder="YY">
+          <div class="expDateSection">
+            <label for="expDate">Exp. Date (MM/YY)</label>
+            <div id="expDate">
+              <input inputmode="numeric" type="tel" maxlength="2" placeholder="MM">
+              <input inputmode="numeric" type="number" maxlength="2" placeholder="YY">
+            </div>
           </div>
-          <label for="cvc">CVC</label>
-          <input id="cvc" type="tel" inputmode="numeric" maxlength="3" placeholder="e.g. 123">
+          <div class="cvcSection">
+            <label for="cvc">CVC</label>
+            <input id="cvc" type="tel" inputmode="numeric" maxlength="3" placeholder="e.g. 123">
+          </div>
         </div>
         <button type="submit">Confirm</button>
       </form>
     </div>
-
-    
-    
-
-    
-    
-    
-
-    
-    
-
-    
-
-    <!-- Completed state start -->
-
-    Thank you!
-    We've added your card details
-    Continue
+    <div class="thankYou">
+      Thank you!
+      We've added your card details
+      Continue
+    </div>
   </main>
   <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
