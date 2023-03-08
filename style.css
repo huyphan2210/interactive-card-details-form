@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk');
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    margin: 0 auto;
+}
+
+main {
+    height: 100%;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex
+}
+    .card {
+        position: relative;
+        width: 30%;
+        overflow: visible;
+        background-image: url(./images/bg-main-desktop.png);
+    }
+
+        .cardFront {
+            position: absolute;
+            padding: 1rem;
+            top: 20%;
+            left: 30%;
+            width: 75%;
+            aspect-ratio: 2;
+            background-image: url(./images/bg-card-front.png);
+            background-size: 100% 100%;
+        }
+
+        .cardBack {
+            position: absolute;
+            padding: 1rem;
+            bottom: 20%;
+            left: 50%;
+            width: 75%;
+            aspect-ratio: 2;
+            background-image: url(./images/bg-card-back.png);
+            background-size: 100% 100%;
+        }
+
+    .cardForm {
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        .cardForm form {
+            width: calc(40% - 4rem);
+            padding: 2rem;
+        }
+            .cardholder, .cardNumber, .dateAndCvc, #expDate, .cvcSection {
+                display: grid;
+                margin-block-end: 1rem;
+            }
+
+            .dateAndCvc, #expDate {
+                grid-template-columns: 50% 50%;
+            }
+
+                #expDate {
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                }
+                
+                
+        .cardForm form button {
+            width: 100%;
+        }
+            .cardForm form button:hover {
+                cursor: pointer;
+            }
+
+    .thankYou {
+        display: none;
+    }
+
+footer {
+    position: fixed;
+    bottom: 1vh;
+}
