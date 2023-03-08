@@ -8,37 +8,61 @@
   <title>Huy Phan | Interactive card details form</title>
 </head>
 <body>
+  <main>
+    <div class="card">
+      <div class="cardFront">
+        0000 0000 0000 0000
+        Jane Appleseed
+        00/00
+      </div>
+      <div class="cardBack">
+        000
+      </div>
+    </div>
+    <div class="cardForm">
+      <form>
+        <div class="cardholder">
+          <label for="name">Cardholder Name</label>
+          <input id="name" type="text" placeholder="e.g. Jane Appleseed">
+        </div>
+        <div class="cardNumber">
+          <label for="number">Card Number</label>
+          <input id="number" type="tel" pattern="\d*" autocomplete="cc-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
+        </div>
+        <div class="dateAndCvc">
+          <label for="expDate">Exp. Date (MM/YY)</label>
+          <div id="expDate">
+            <input inputmode="numeric" type="tel" maxlength="2" placeholder="MM">
+            <input inputmode="numeric" type="number" maxlength="2" placeholder="YY">
+          </div>
+          <label for="cvc">CVC</label>
+          <input id="cvc" type="tel" inputmode="numeric" maxlength="3" placeholder="e.g. 123">
+        </div>
+        <button type="submit">Confirm</button>
+      </form>
+    </div>
 
-  0000 0000 0000 0000
-  Jane Appleseed
-  00/00
+    
+    
 
-  000
+    
+    
+    
 
-  Cardholder Name
-  e.g. Jane Appleseed
+    
+    
 
-  Card Number
-  e.g. 1234 5678 9123 0000
+    
 
-  Exp. Date (MM/YY)
-  MM
-  YY
+    <!-- Completed state start -->
 
-  CVC
-  e.g. 123
-
-  Confirm
-
-  <!-- Completed state start -->
-
-  Thank you!
-  We've added your card details
-  Continue
-  
-  <div class="attribution">
+    Thank you!
+    We've added your card details
+    Continue
+  </main>
+  <footer class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/huyphan2210" target="_blank">Huy Phan</a>.
-  </div>
+  </footer>
 </body>
 </html>
