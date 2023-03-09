@@ -3,6 +3,18 @@
 html {
     height: 100%;
 }
+
+:root {
+    --linear-first: hsl(249, 99%, 64%);
+    --linear-last: hsl(278, 94%, 30%);
+
+    --red: hsl(0, 100%, 66%);
+
+    --light-gray-violet: hsl(270, 3%, 87%);
+    --dark-grayish-violet: hsl(279, 6%, 55%);
+    --very-dark-violet: hsl(278, 68%, 11%);
+}
+
 body {
     height: 100%;
     margin: 0 auto;
@@ -24,22 +36,57 @@ main {
             position: absolute;
             padding: 1rem;
             top: 20%;
-            left: 30%;
+            left: 40%;
             width: 75%;
             aspect-ratio: 2;
             background-image: url(./images/bg-card-front.png);
             background-size: 100% 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+            text-transform: uppercase;
         }
+            .cardFront::before {
+                position: absolute;
+                left: 1rem;
+                bottom: 25%;
+                display: block;
+                font-size: 1.5rem;
+                letter-spacing: 0.2rem;
+                content: '0000 0000 0000 0000';
+            }
+
+            .cardFront img {
+                max-width: 20%;
+            }
+
+            .cardFront .holder {
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.8rem;
+                letter-spacing: 0.1rem;
+            }
 
         .cardBack {
             position: absolute;
             padding: 1rem;
             bottom: 20%;
-            left: 50%;
+            left: 60%;
             width: 75%;
             aspect-ratio: 2;
             background-image: url(./images/bg-card-back.png);
             background-size: 100% 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .cardBack span {
+            color: white;
+            transform: translate(-100%);
+            letter-spacing: 0.1rem;
+            font-size: 0.8rem;
         }
 
     .cardForm {
@@ -55,6 +102,7 @@ main {
             .cardholder, .cardNumber, .dateAndCvc, #expDate, .cvcSection {
                 display: grid;
                 margin-block-end: 1rem;
+                grid-template-columns: 100%;
             }
 
             .dateAndCvc, #expDate {
@@ -69,10 +117,54 @@ main {
                 
         .cardForm form button {
             width: 100%;
+            font-family: 'Space Grotesk', sans-serif;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-width: 0;
+            background-color: var(--very-dark-violet);
+            color: var(--light-gray-violet);
+            letter-spacing: 0.1rem;
+            font-weight: 700;
         }
             .cardForm form button:hover {
                 cursor: pointer;
+                opacity: 0.8;
             }
+        .cardForm form input {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-width: thin;
+            border-color: var(--light-gray-violet);
+            border-style: solid;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: 0.1rem;
+        }
+            .cardForm form input::placeholder {
+                font-family: 'Space Grotesk', sans-serif;
+                font-weight: 500;
+                color: var(--light-gray-violet);
+                font-size: 1rem;
+                font-weight: 600;
+            }
+
+            .cardForm form input:focus {
+                outline-width: thin;
+                outline-color: linear-radiant(var(--linear-first), var(--linear-last));
+            }
+        .cardForm form div label {
+            display: block;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: var(--very-dark-violet);
+            letter-spacing: 0.1rem;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        #expDate input {
+            width: 40%;
+        }
 
     .thankYou {
         display: none;
@@ -81,4 +173,43 @@ main {
 footer {
     position: fixed;
     bottom: 1vh;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+@media screen and (max-aspect-ratio: 1) {
+    main {
+        flex-direction: column;
+    }
+        
+        .card {
+            width: 100%;
+            aspect-ratio: 1;
+            background-image: url(./images/bg-main-mobile.png);
+        }
+
+            .cardFront {
+                left: 1rem;
+                top: 100%;
+                transform: translate(0, -75%);
+                z-index: 1;
+            }
+
+            .cardBack {
+                left: 100%;
+                transform: translate(calc(-100% - 1rem));
+                top: 10%;
+                z-index: 0;
+            }
+        .cardForm {
+            width: 100%;
+        }
+            .cardForm form {
+                width: calc(100% - 2rem);
+                padding: 4rem 1rem;
+            }
 }
