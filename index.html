@@ -11,12 +11,14 @@
   <main>
     <div class="card">
       <div class="cardFront">
-        0000 0000 0000 0000
-        Jane Appleseed
-        00/00
+        <img src="./images/card-logo.svg" alt="Card Logo"> 
+        <div class="holder">
+          <span>Jane Appleseed</span>
+          <span>00/00</span>
+        </div>
       </div>
       <div class="cardBack">
-        000
+        <span>000</span>
       </div>
     </div>
     <div class="cardForm">
@@ -27,13 +29,13 @@
         </div>
         <div class="cardNumber">
           <label for="number">Card Number</label>
-          <input id="number" type="tel" pattern="\d*" autocomplete="cc-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
+          <input id="number" type="text" pattern="[0-9.]+" autocomplete="cc-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
         </div>
         <div class="dateAndCvc">
           <div class="expDateSection">
             <label for="expDate">Exp. Date (MM/YY)</label>
             <div id="expDate">
-              <input inputmode="numeric" type="tel" maxlength="2" placeholder="MM">
+              <input inputmode="numeric" type="number" maxlength="2" placeholder="MM" min="1" max="12">
               <input inputmode="numeric" type="number" maxlength="2" placeholder="YY">
             </div>
           </div>
@@ -55,5 +57,7 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://github.com/huyphan2210" target="_blank">Huy Phan</a>.
   </footer>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="./function.js"></script>
 </body>
 </html>
