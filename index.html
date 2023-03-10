@@ -11,10 +11,11 @@
   <main>
     <div class="card">
       <div class="cardFront">
+        <div class="number">0000 0000 0000 0000</div>
         <img src="./images/card-logo.svg" alt="Card Logo"> 
         <div class="holder">
-          <span>Jane Appleseed</span>
-          <span>00/00</span>
+          <span class="name">Jane Appleseed</span>
+          <div><span>00</span>/<span>00</span></div>
         </div>
       </div>
       <div class="cardBack">
@@ -29,19 +30,19 @@
         </div>
         <div class="cardNumber">
           <label for="number">Card Number</label>
-          <input id="number" type="text" pattern="[0-9.]+" autocomplete="cc-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
+          <input id="number" type="text" autocomplete="cc-number" inputmode="numeric" placeholder="e.g. 1234 5678 9123 0000" maxlength="19">
         </div>
         <div class="dateAndCvc">
           <div class="expDateSection">
             <label for="expDate">Exp. Date (MM/YY)</label>
             <div id="expDate">
-              <input inputmode="numeric" type="number" maxlength="2" placeholder="MM" min="1" max="12">
-              <input inputmode="numeric" type="number" maxlength="2" placeholder="YY">
+              <input inputmode="numeric" type="text" maxlength="2" placeholder="MM" min="1" max="12">
+              <input inputmode="numeric" type="text" maxlength="2" placeholder="YY">
             </div>
           </div>
           <div class="cvcSection">
             <label for="cvc">CVC</label>
-            <input id="cvc" type="tel" inputmode="numeric" maxlength="3" placeholder="e.g. 123">
+            <input id="cvc" type="text" inputmode="numeric" maxlength="3" placeholder="e.g. 123">
           </div>
         </div>
         <button type="submit">Confirm</button>
