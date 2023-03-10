@@ -47,14 +47,12 @@ main {
             color: white;
             text-transform: uppercase;
         }
-            .cardFront::before {
+            .cardFront .number {
                 position: absolute;
                 left: 1rem;
                 bottom: 25%;
-                display: block;
                 font-size: 1.5rem;
                 letter-spacing: 0.2rem;
-                content: '0000 0000 0000 0000';
             }
 
             .cardFront img {
@@ -84,9 +82,10 @@ main {
 
         .cardBack span {
             color: white;
-            transform: translate(-100%);
+            position: absolute;
             letter-spacing: 0.1rem;
             font-size: 0.8rem;
+            right: 3rem;
         }
 
     .cardForm {
@@ -149,6 +148,7 @@ main {
             }
 
             .cardForm form input:focus {
+                outline-style: solid;
                 outline-width: thin;
                 outline-color: linear-radiant(var(--linear-first), var(--linear-last));
             }
