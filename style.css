@@ -88,7 +88,7 @@ main {
             right: 3rem;
         }
 
-    .cardForm {
+    .cardForm, .thankYou {
         width: 70%;
         display: flex;
         justify-content: center;
@@ -104,17 +104,22 @@ main {
                 grid-template-columns: 100%;
             }
 
+            .cvcSection {
+                position: relative;
+            }
+
             .dateAndCvc, #expDate {
                 grid-template-columns: 50% 50%;
             }
 
                 #expDate {
+                    position: relative;
                     display: grid;
                     grid-template-columns: 50% 50%;
                 }
                 
                 
-        .cardForm form button {
+        button {
             width: 100%;
             font-family: 'Space Grotesk', sans-serif;
             padding: 1rem;
@@ -125,7 +130,7 @@ main {
             letter-spacing: 0.1rem;
             font-weight: 700;
         }
-            .cardForm form button:hover {
+            button:hover {
                 cursor: pointer;
                 opacity: 0.8;
             }
@@ -162,13 +167,38 @@ main {
             font-size: 0.8rem;
         }
 
+        .cardForm form small {
+            display: none;
+            margin-top: 0.5rem;
+            color: var(--red);
+            white-space: nowrap;
+        }
+        #expDate small, .cvcSection small {
+            margin-top: 0;
+            position: absolute;
+            bottom: -1.5rem;
+        }
+
         #expDate input {
             width: 40%;
         }
 
     .thankYou {
         display: none;
+        flex-direction: column;
     }
+        .thankYou button {
+            max-width: 300px;
+        }
+        .thankYou h1 {
+            margin-block-end: 0;
+            color: var(--very-dark-violet);
+        }
+        .thankYou p {
+            margin-block-start: 0.5rem;
+            color: var(--dark-grayish-violet);
+            font-weight: 500;
+        }
 
 footer {
     position: fixed;
@@ -188,7 +218,7 @@ input::-webkit-inner-spin-button {
         
         .card {
             width: 100%;
-            aspect-ratio: 1;
+            height: 40%;
             background-image: url(./images/bg-main-mobile.png);
         }
 
@@ -205,11 +235,18 @@ input::-webkit-inner-spin-button {
                 top: 10%;
                 z-index: 0;
             }
-        .cardForm {
+        .cardForm, .thankYou {
             width: 100%;
+            height: 60%;
         }
             .cardForm form {
                 width: calc(100% - 2rem);
-                padding: 4rem 1rem;
+                padding: 0 1rem;
+                margin-block-start: 4rem;
             }
+    footer {
+        position: static;
+        text-align: center;
+        margin-block: 2rem;
+    }
 }
