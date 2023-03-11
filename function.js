@@ -1,45 +1,13 @@
 $(document).ready(function() {
     // Prevent users from entering and pasting numbers.
     $('#name').on('keydown paste', function(e) {
-        e = e || window.event;
-        if (e.type === 'paste') {
-            const pastedData = e.originalEvent.clipboardData.getData('text');
-            if (!/^[a-zA-Z ]+$/.test(pastedData)) {
-                return false;
-            }
-        } else {
-            const charCode = (typeof e.which === "undefined") ? e.keyCode : e.which;
-            const charStr = String.fromCharCode(charCode);
-            if (
-                !/([A-Z]|[a-z]| )/.test(charStr) &&
-                charCode !== 8 &&
-                charCode !== 46
-            ) {
-                return false;
-            }    
-        }
-    })
+        if (preventInvalidLetters(e, /^[a-zA-Z ]+$/) === false) return false;
+    });
 
     // Prevent users from entering and pasting characters that are not numbers.
     $('#number').on('keydown paste', function(e) {
-        e = e || window.event;
-        if (e.type === 'paste') {
-            const pastedData = e.originalEvent.clipboardData.getData('text');
-            if (!/^[0-9 ]+$/.test(pastedData)) {
-                return false;
-            }
-        } else {
-            const charCode = (typeof e.which === "undefined") ? e.keyCode : e.which;
-            const charStr = String.fromCharCode(charCode);
-            if (
-                !/([0-9]| )/.test(charStr) &&
-                charCode !== 8 &&
-                charCode !== 46
-            ) {
-                return false;
-            } 
-        }
-
+        if (preventInvalidLetters(e, /^[0-9 ]+$/) === false) return false;
+        
         const previousVal = $(this).val();
 
         $(this).val(cc_format(previousVal));
@@ -52,24 +20,8 @@ $(document).ready(function() {
     })
 
     $('.dateAndCvc input').on('keydown paste', function(e) {
-        e = e || window.event;
-        if (e.type === 'paste') {
-            const pastedData = e.originalEvent.clipboardData.getData('text');
-            if (!/^[0-9]+$/.test(pastedData)) {
-                return false;
-            }
-        } else {
-            const charCode = (typeof e.which === "undefined") ? e.keyCode : e.which;
-            const charStr = String.fromCharCode(charCode);
-            if (
-                !/([0-9])/.test(charStr) &&
-                charCode !== 8 &&
-                charCode !== 46
-            ) {
-                return false;
-            }      
-        }
-    })
+        if (preventInvalidLetters(e, /^[0-9]+$/) === false) return false;
+    });
 
     $('#name, .dateAndCvc input').keyup(function() {
         if (!$('#name').val()) {
@@ -89,7 +41,7 @@ $(document).ready(function() {
         } else {
             $('.holder div span:last-child').text($('#expDate input:last-child').val());
         }
-        console.log($('.cvcSection input').val())
+
         if (!$('.cvcSection input').val()) {
             $('.cardBack span').text('000');
         } else {
@@ -117,5 +69,25 @@ function cc_format(value) {
         return parts.join(' ');
     } else {
         return value;
+    }
+}
+
+function preventInvalidLetters(e, regexr) {
+    e = e || window.event;
+    if (e.type === 'paste') {
+        const pastedData = e.originalEvent.clipboardData.getData('text');
+        if (!regexr.test(pastedData)) {
+            return false;
+        }
+    } else {
+        const charCode = (typeof e.which === "undefined") ? e.keyCode : e.which;
+        const charStr = String.fromCharCode(charCode);
+        if (
+            !regexr.test(charStr) &&
+            charCode !== 8 &&
+            charCode !== 46
+        ) {
+            return false;
+        }      
     }
 }
