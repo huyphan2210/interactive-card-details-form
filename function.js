@@ -1,12 +1,22 @@
 $(document).ready(function() {
     // Prevent users from entering and pasting numbers.
     $('#name').on('keydown paste', function(e) {
-        if (preventInvalidLetters(e, /^[a-zA-Z ]+$/) === false) return false;
+        const charCode = (typeof e.which === "undefined") ? e.keyCode : e.which;
+        if (
+            preventInvalidLetters(e, /^[a-zA-Z ]+$/) === false || (
+                charCode >= 96 && charCode <= 105
+            )
+        ) return false;
     });
 
     // Prevent users from entering and pasting characters that are not numbers.
-    $('#number').on('keydown paste', function(e) {
-        if (preventInvalidLetters(e, /^[0-9 ]+$/) === false) return false;
+    $('#number').on('keydown paste change', function(e) {
+        const charCode = (typeof e.which === "undefined") ? e.keyCode : e.which;
+        if (
+            preventInvalidLetters(e, /^[0-9 ]+$/) === false && !(
+                charCode >= 96 && charCode <= 105
+            )
+        ) return false;
         
         const previousVal = $(this).val();
 
@@ -17,6 +27,7 @@ $(document).ready(function() {
         } else {
             $('.number').text(cc_format(previousVal));
         }
+        
     })
 
     $('.dateAndCvc input').on('keydown paste', function(e) {
@@ -36,10 +47,10 @@ $(document).ready(function() {
             $('.holder div span:first-child').text($('#expDate input:first-child').val());
         }
 
-        if (!$('#expDate input:last-child').val()) {
-            $('.holder div span:last-child').text('00');
+        if (!$('#expDate input:nth-child(2)').val()) {
+            $('.holder div span:nth-child(2)').text('00');
         } else {
-            $('.holder div span:last-child').text($('#expDate input:last-child').val());
+            $('.holder div span:nth-child(2)').text($('#expDate input:nth-child(2)').val());
         }
 
         if (!$('.cvcSection input').val()) {
@@ -49,8 +60,30 @@ $(document).ready(function() {
         }
     })
     
+    
     $('form').submit(function(e) {
         e.preventDefault();
+
+        let errors = '';
+
+        $('input').each(function() {
+            if (!$(this).val()) {
+                $(this).parent().find('small').not('#wrongMonth').css('display', 'block');
+                $(this).css('border-color', 'var(--red)');
+                $(this).css('outline-color', 'var(--red)');
+                errors = 'error';
+            } else {
+                $(this).parent().find('small').not('#wrongMonth').css('display', '');
+                $(this).css('border-color', '');
+                $(this).css('outline-color', '');
+                errors = '';
+            }
+        })
+        console.log(errors)
+        if (!errors) {
+            $('.cardForm').css('display', 'none');
+            $('.thankYou').css('display', 'flex');
+        }
     })
 })
 
@@ -84,8 +117,10 @@ function preventInvalidLetters(e, regexr) {
         const charStr = String.fromCharCode(charCode);
         if (
             !regexr.test(charStr) &&
-            charCode !== 8 &&
-            charCode !== 46
+            charCode !== 8 &&    // Backspace
+            charCode !== 46 &&   // Delete
+            charCode !== 13  &&  // Enter
+            charCode !== 9       // Tab
         ) {
             return false;
         }      
